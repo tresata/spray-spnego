@@ -5,7 +5,7 @@ import net.virtualvoid.sbt.graph.Plugin._
 object ProjectBuild extends Build {
   val sharedSettings = Project.defaultSettings ++ graphSettings ++ Seq(
     organization := "com.tresata",
-    version := "0.1.0",
+    version := "0.2.0-SNAPSHOT",
     scalaVersion := "2.10.4",
     crossScalaVersions := Seq("2.10.4", "2.11.5"),
     javacOptions ++= Seq("-Xlint:unchecked", "-source", "1.6", "-target", "1.6"),
