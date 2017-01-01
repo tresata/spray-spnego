@@ -4,7 +4,7 @@ import sbt.Keys._
 object ProjectBuild extends Build {
   val sharedSettings = Seq(
     organization := "com.tresata",
-    version := "0.2.0",
+    version := "0.3.0-SNAPSHOT",
     scalaVersion := "2.11.7",
     javacOptions ++= Seq("-Xlint:unchecked", "-source", "1.7", "-target", "1.7"),
     scalacOptions ++= Seq("-unchecked", "-deprecation", "-target:jvm-1.7", "-feature", "-Xlint", "-language:_"),
