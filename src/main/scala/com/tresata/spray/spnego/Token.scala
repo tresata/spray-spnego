@@ -1,13 +1,14 @@
 package com.tresata.spray.spnego
 
 import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets.UTF_8
 import java.security.MessageDigest
 import scala.util.{ Try, Success }
 
 import com.typesafe.config.{ Config, ConfigFactory }
 
 import akka.event.LoggingAdapter
-import spray.util._
+import spray.util.{ pimpConfig, LoggingContext }
 
 import org.apache.commons.codec.binary.Base64
 
@@ -19,7 +20,7 @@ object Tokens {
     val signatureSecret = config.getString("tresata.spray.spnego.signature.secret")
 
     log.info("tokenValidity {}", tokenValidity)
-    new Tokens(tokenValidity.toMillis, signatureSecret.getBytes(UTF8), log)
+    new Tokens(tokenValidity.toMillis, signatureSecret.getBytes(UTF_8), log)
   }
 }
 
@@ -28,7 +29,7 @@ class Tokens(tokenValidity: Long, signatureSecret: Array[Byte], log: LoggingAdap
 
   private[spnego] def sign(token: Token): String = {
     val md = MessageDigest.getInstance("SHA")
-    md.update(token.principal.getBytes(UTF8))
+    md.update(token.principal.getBytes(UTF_8))
     val bb = ByteBuffer.allocate(8)
     bb.putLong(token.expiration)
     md.update(bb.array)
