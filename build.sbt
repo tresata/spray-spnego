@@ -2,8 +2,11 @@ lazy val sharedSettings = Seq(
   organization := "com.tresata",
   version := "0.3.0-SNAPSHOT",
   scalaVersion := "2.11.8",
-  javacOptions ++= Seq("-Xlint:unchecked", "-source", "1.7", "-target", "1.7"),
-  scalacOptions ++= Seq("-unchecked", "-deprecation", "-target:jvm-1.7", "-feature", "-Xlint", "-language:_"),
+  scalacOptions ++= Seq("-unchecked", "-deprecation", "-target:jvm-1.7", "-feature", "-language:_", "-Xlint:-package-object-classes,-adapted-args,_",
+    "-Ywarn-unused-import", "-Ywarn-dead-code", "-Ywarn-value-discard", "-Ywarn-unused"),
+  scalacOptions in (Test, compile) := (scalacOptions in (Test, compile)).value.filter(_ != "-Ywarn-value-discard").filter(_ != "-Ywarn-unused"),
+  scalacOptions in (Compile, console) := (scalacOptions in (Compile, console)).value.filter(_ != "-Ywarn-unused-import"),
+  scalacOptions in (Test, console) := (scalacOptions in (Test, console)).value.filter(_ != "-Ywarn-unused-import"),
   publishMavenStyle := true,
   pomIncludeRepository := { x => false },
   publishArtifact in Test := false
