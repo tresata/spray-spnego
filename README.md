@@ -1,3 +1,5 @@
+# NOTE: this project is no longer updated or maintained. Spray has been superseded by Akka HTTP. See [akka-http-spnego](https://github.com/tresata/akka-http-spnego)
+
 [![Build Status](https://travis-ci.org/tresata/spray-spnego.svg?branch=master)](https://travis-ci.org/tresata/spray-spnego)
 
 # spray-spnego
